@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, ForeignKey, Date, Text, MetaData
+from sqlalchemy import Column, Integer, String, ForeignKey, Text, MetaData, DateTime
 from typing import Optional, Dict
 from core.db_core import Base
 
@@ -19,8 +19,8 @@ class LatestMessages(Base):
     __tablename__ = 'latest_messages'
 
     id: int = Column(Integer, primary_key=True, index=True)
-    channel_id: int = Column(Integer, ForeignKey('channel_info.id'), index=True)
-    date: Date = Column(Date)
+    channel_username: str = Column(String, ForeignKey('channel_info.username'), index=True)
+    date: DateTime = Column(DateTime)
     forwards: int = Column(Integer)
     url: str = Column(String)
     reactions: Optional[Dict[str, str]] = Column(String)

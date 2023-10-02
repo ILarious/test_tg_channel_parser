@@ -30,13 +30,14 @@ class TelegramAPI:
             'link': f'https://t.me/{channel_entity.username}'
         }
 
-    async def get_latest_messages(self, channel_username, limit=10):
+    async def get_latest_messages(self, channel_username, limit):
         channel_entity = await self.client.get_entity(channel_username)
         messages = await self.client.get_messages(channel_entity, limit=limit)
         result = []
         for message in messages:
             result.append({
                 'id': message.id,
+                'channel_id': channel_entity.id,
                 'views': message.views,
                 'date': message.date.strftime('%Y-%m-%d %H:%M:%S'),
                 'forwards': message.forwards,

@@ -57,4 +57,4 @@ async def crud_delete_channel(db: AsyncSession, channel_username: str):
     if db_channel_info:
         await db.delete(db_channel_info)
         await db.commit()
-    return db_channel_info
+    return {"message": "Channel deleted successfully"}
