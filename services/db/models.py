@@ -1,6 +1,6 @@
 from sqlalchemy import Column, Integer, String, ForeignKey, Text, MetaData, DateTime
 from typing import Optional, Dict
-from core.db_core import Base
+from services.db.db_core import Base
 
 metadata: Optional[MetaData] = Base.metadata
 

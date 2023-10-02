@@ -2,8 +2,8 @@ from sqlalchemy import select
 
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from models import models
-from api.tg_api.tg_utils import get_tg_channel_info
+from services.db import models
+from services.tg.tg_utils import get_tg_channel_info
 
 
 async def crud_post_channel(channel_username: str, db: AsyncSession):

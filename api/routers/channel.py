@@ -4,9 +4,9 @@ from sqlalchemy.exc import IntegrityError
 from sqlalchemy.ext.asyncio import AsyncSession
 from telethon.errors import UsernameNotOccupiedError
 
-from api.crud.channel import crud_post_channel, crud_get_channel, crud_update_channel, crud_delete_channel
-from core.db_core import get_async_session
-from schemas.channel import ChannelInfo
+from services.db.crud.channel import crud_post_channel, crud_get_channel, crud_update_channel, crud_delete_channel
+from services.db.db_core import get_async_session
+from api.schemas.channel import ChannelInfo
 
 router = APIRouter(
     prefix="/channels",

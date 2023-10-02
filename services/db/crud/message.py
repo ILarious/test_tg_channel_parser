@@ -5,8 +5,8 @@ from sqlalchemy import select
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from api.tg_api.tg_utils import get_tg_latest_messages
-from models import models
+from services.tg.tg_utils import get_tg_latest_messages
+from services.db import models
 
 
 async def crud_post_messages(channel_username: str, message_data: dict, db: AsyncSession):

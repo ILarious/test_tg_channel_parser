@@ -4,7 +4,7 @@ from sqlalchemy import String
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncEngine, async_sessionmaker, AsyncSession
 from sqlalchemy.orm import DeclarativeBase
 
-from config.db_config import db_settings
+from services.db.db_config import db_settings
 
 str_256 = Annotated[str, 256]
 

@@ -1,5 +1,5 @@
-from config.tg_config import tg_settings
-from core.tg_core import TelegramAPI
+from services.tg.tg_config import tg_settings
+from services.tg.tg_core import TelegramAPI
 
 api_id = tg_settings.TG_API_ID
 api_hash = tg_settings.TG_API_HASH

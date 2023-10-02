@@ -1,10 +1,10 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from api.crud.message import crud_post_messages, crud_get_messages, crud_update_messages, crud_delete_message_by_id, \
+from services.db.crud.message import crud_post_messages, crud_get_messages, crud_update_messages, crud_delete_message_by_id, \
     crud_delete_messages_by_channel, crud_get_message_by_id
-from api.tg_api.tg_utils import get_tg_latest_messages
-from core.db_core import get_async_session
+from services.tg.tg_utils import get_tg_latest_messages
+from services.db.db_core import get_async_session
 
 router = APIRouter(
     prefix="/messages",

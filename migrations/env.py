@@ -5,8 +5,9 @@ from sqlalchemy import pool
 
 from alembic import context
 
-from config.db_config import db_settings
-from models.models import metadata as metadata_tg_parser
+
+from services.db.db_config import db_settings
+from services.db.models import metadata as metadata_tg_parser
 
 DB_HOST = db_settings.DB_HOST
 DB_PORT = str(db_settings.DB_PORT)
@@ -26,6 +27,7 @@ config.set_section_option(section, "DB_PORT", DB_PORT)
 config.set_section_option(section, "DB_USER", DB_USER)
 config.set_section_option(section, "DB_NAME", DB_NAME)
 config.set_section_option(section, "DB_PASS", DB_PASS)
+
 
 # Interpret the config file for Python logging.
 # This line sets up loggers basically.
