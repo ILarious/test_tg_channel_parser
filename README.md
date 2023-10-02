@@ -33,7 +33,7 @@
     Создать файл .env.production и добавить переменные окружения согласно .env.example
 
 
-3. **Создание Docker контейнера с FastAPI и PostgreSQL**
+3. **Создание Docker контейнеров с FastAPI и PostgreSQL**
 
 - Убедитесь, что Docker установлен и запущен на вашей машине.
 
