@@ -4,9 +4,20 @@ services:
   postgres:
     image: postgres:latest
     container_name: my_postgres
-    environment:
-      POSTGRES_DB: db_test
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
+    env_file:
+      - .env.production
     ports:
       - "5432:5432"
+
+  fastapi_app:
+    build:
+      context: .
+    container_name: my_fastapi
+    ports:
+      - "8000:8000"
+    depends_on:
+      - postgres
+    env_file:
+      - .env.production
+    command: >
+      /bin/sh -c "alembic upgrade head && uvicorn main:app --host 0.0.0.0 --port 8000 --reload"
