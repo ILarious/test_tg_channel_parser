@@ -4,7 +4,7 @@ from fastapi import FastAPI
 
 # Импорт роутеров, определенных в других файлах
 from api.routers.channel import router as router_channels
-from api.routers.message import router as router_messages
+
 # Создание экземпляра FastAPI приложения
 app: FastAPI = FastAPI(
     title="final_course_project",  # Название вашего приложения
@@ -12,7 +12,6 @@ app: FastAPI = FastAPI(
 
 # Включение роутеров для обработки маршрутов API
 app.include_router(router_channels)
-app.include_router(router_messages)
 
 
 # Определение функции main для запуска сервера

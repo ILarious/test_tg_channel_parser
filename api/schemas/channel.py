@@ -9,3 +9,4 @@ class ChannelInfo(BaseModel):
     description: Optional[str] = None
     member_count: int
     link: str
+    messages: Optional[list] = list

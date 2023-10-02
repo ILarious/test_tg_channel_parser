@@ -24,4 +24,4 @@ services:
     env_file:
       - .env.production
     command: >
-      /bin/sh -c "alembic -c alembic.ini revision --autogenerate -m 'deploy' && alembic -c alembic.ini upgrade head && uvicorn main:app --host 0.0.0.0 --port 8000 --reload"
+      /bin/sh -c "alembic -c /app/services/db/alembic.ini revision --autogenerate -m 'deploy' && alembic -c /app/services/db/alembic.ini upgrade head && uvicorn main:app --host 0.0.0.0 --port 8000 --reload"

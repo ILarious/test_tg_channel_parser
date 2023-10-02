@@ -4,9 +4,10 @@ from sqlalchemy.exc import IntegrityError
 from sqlalchemy.ext.asyncio import AsyncSession
 from telethon.errors import UsernameNotOccupiedError
 
-from services.db.crud.channel import crud_post_channel, crud_get_channel, crud_update_channel, crud_delete_channel
+from services.db.crud.channel import crud_post_channel, crud_get_channel
 from services.db.db_core import get_async_session
 from api.schemas.channel import ChannelInfo
+from services.tg.tg_utils import get_tg_channel_info, get_tg_latest_messages
 
 router = APIRouter(
     prefix="/channels",
@@ -14,16 +15,24 @@ router = APIRouter(
 )
 
 
-@router.post("/{channel_username}/", response_model=ChannelInfo)
-async def post_channel(channel_name: str, db: AsyncSession = Depends(get_async_session)):
+@router.post("/post/{channel_username}/")
+async def post_channel(
+        channel_username: str,
+        limit_latest_messages: int = 10,
+        db: AsyncSession = Depends(get_async_session)):
     try:
-        post_channel = await crud_post_channel(channel_name, db)
+        channel_info = await get_tg_channel_info(channel_username)
+        messages_info = await get_tg_latest_messages(channel_username, limit_latest_messages)
+        post_channel = await crud_post_channel(channel_info, messages_info, db)
+
         return post_channel
+
     except (UniqueViolationError, IntegrityError):
         raise HTTPException(
             status_code=409,
             detail='Channel already exists'
         )
+
     except (UsernameNotOccupiedError, ValueError):
         raise HTTPException(
             status_code=404,
@@ -31,28 +40,14 @@ async def post_channel(channel_name: str, db: AsyncSession = Depends(get_async_s
         )
 
 
-@router.get("/{channel_username}/", response_model=ChannelInfo)
+@router.get("/get/{channel_username}/", response_model=ChannelInfo)
 async def get_channel_info(channel_name: str, db: AsyncSession = Depends(get_async_session)):
     get_channel = await crud_get_channel(channel_name, db)
+
     if not get_channel:
         raise HTTPException(
             status_code=404,
             detail='Channel not found'
         )
+
     return get_channel
-
-
-@router.put("/{channel_username}/", response_model=ChannelInfo)
-async def update_channel(channel_username: str, db: AsyncSession = Depends(get_async_session)):
-    updated_channel = await crud_update_channel(db, channel_username)
-    if updated_channel is None:
-        raise HTTPException(status_code=404, detail="Channel not found")
-    return updated_channel
-
-
-@router.delete("/{channel_username}/", response_model=ChannelInfo)
-async def delete_channel(channel_username: str, db: AsyncSession = Depends(get_async_session)):
-    deleted_channel = await crud_delete_channel(db, channel_username)
-    if deleted_channel is None:
-        raise HTTPException(status_code=404, detail="Channel not found")
-    return deleted_channel
