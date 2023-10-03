@@ -6,7 +6,7 @@ class TelegramSettings(BaseSettings):
     TG_API_HASH: str
     TG_STRING_SESSION: str
 
-    model_config = SettingsConfigDict(env_file=".env.production", extra='ignore')
+    model_config: SettingsConfigDict = SettingsConfigDict(env_file=".env", extra='ignore')
 
 
-tg_settings = TelegramSettings()
+tg_settings: TelegramSettings = TelegramSettings()

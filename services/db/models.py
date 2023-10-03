@@ -3,7 +3,7 @@ from typing import Optional
 
 from sqlalchemy.dialects.postgresql import JSONB
 
-from services.db.db_core import Base
+from services.db.core import Base
 
 metadata: Optional[MetaData] = Base.metadata
 
@@ -11,10 +11,10 @@ metadata: Optional[MetaData] = Base.metadata
 class ChannelInfo(Base):
     __tablename__ = 'channel_info'
 
-    id = Column(Integer, primary_key=True, index=True)
-    username = Column(String, unique=True, index=True)
-    title = Column(String)
-    description = Column(Text)
-    member_count = Column(Integer)
-    link = Column(String)
-    messages = Column(JSONB)
+    id: int = Column(Integer, primary_key=True, index=True)
+    username: str = Column(String, unique=True, index=True)
+    title: str = Column(String)
+    description: Optional[str] = Column(Text)
+    member_count: int = Column(Integer)
+    link: str = Column(String)
+    messages: Optional[dict] = Column(JSONB)

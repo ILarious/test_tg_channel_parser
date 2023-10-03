@@ -1,10 +1,10 @@
-from typing import Annotated, AsyncGenerator
+from typing import Annotated, AsyncGenerator, Dict
 
 from sqlalchemy import String
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncEngine, async_sessionmaker, AsyncSession
 from sqlalchemy.orm import DeclarativeBase
 
-from services.db.db_config import db_settings
+from services.db.config import db_settings
 
 str_256 = Annotated[str, 256]
 
@@ -15,7 +15,7 @@ class Base(DeclarativeBase):
 
     Содержит маппинг типов данных на колонки таблицы.
     """
-    type_annotation_map = {
+    type_annotation_map: Dict[str, str] = {
         str_256: String(256)
     }
 
@@ -27,7 +27,7 @@ engine: AsyncEngine = create_async_engine(
 )
 
 # Создание асинхронной фабрики сессий для работы с базой данных
-async_session_maker = async_sessionmaker(
+async_session_maker: async_sessionmaker = async_sessionmaker(
     engine,
     class_=AsyncSession,
     expire_on_commit=False

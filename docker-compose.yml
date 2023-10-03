@@ -5,13 +5,25 @@ services:
     image: postgres:latest
     container_name: my_postgres
     env_file:
-      - .env.production
+      - .env
     environment:
       - POSTGRES_USER=${DB_USER}
       - POSTGRES_PASSWORD=${DB_PASS}
       - POSTGRES_DB=${DB_NAME}
     ports:
       - "5432:5432"
+
+  postgres_test:
+    image: postgres:latest
+    container_name: my_postgres_test
+    env_file:
+      - .env
+    environment:
+      - POSTGRES_USER=${DB_USER_TEST}
+      - POSTGRES_PASSWORD=${DB_PASS_TEST}
+      - POSTGRES_DB=${DB_NAME_TEST}
+    ports:
+      - "6000:5432"
 
   fastapi_app:
     build:
@@ -22,6 +34,6 @@ services:
     depends_on:
       - postgres
     env_file:
-      - .env.production
+      - .env
     command: >
       /bin/sh -c "alembic -c /app/services/db/alembic.ini revision --autogenerate -m 'deploy' && alembic -c /app/services/db/alembic.ini upgrade head && uvicorn main:app --host 0.0.0.0 --port 8000 --reload"

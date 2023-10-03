@@ -6,7 +6,7 @@ from sqlalchemy import pool
 from alembic import context
 
 
-from services.db.db_config import db_settings
+from services.db.config import db_settings
 from services.db.models import metadata as metadata_tg_parser
 
 DB_HOST = db_settings.DB_HOST
