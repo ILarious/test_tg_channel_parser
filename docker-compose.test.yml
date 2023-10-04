@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+  postgres_test:
+    image: postgres:latest
+    container_name: my_postgres_test
+    env_file:
+      - .env
+    environment:
+      - POSTGRES_USER=${DB_USER_TEST}
+      - POSTGRES_PASSWORD=${DB_PASS_TEST}
+      - POSTGRES_DB=${DB_NAME_TEST}
+    ports:
+      - "6000:5432"
+
+  pytest:
+    build:
+      context: .
+    container_name: pytest
+    depends_on:
+      - postgres_test
+    command: >
+      /bin/sh -c "pytest -v"
