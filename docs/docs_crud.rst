@@ -6,102 +6,90 @@
 
 Этот документ содержит обзор и документацию к API, созданному с использованием FastAPI.
 
-Класс ChannelInfo
+Модуль `crud` содержит функции для взаимодействия с базой данных, включая создание новых записей о каналах и извлечение информации о каналах.
+
+Функции
+-------
+.. autofunction:: crud_post_channel
+.. autofunction:: crud_get_channel
+
+Функция crud_post_channel
 ------------
 
 .. code-block:: python
 
-    class ChannelInfo(BaseModel):
+    async def crud_post_channel(
+            channel_info: ChannelInfoPydantic,
+            messages_info: List[Dict[Any, Any]],
+            db: AsyncSession) -> ChannelInfo:
         """
-        Модель данных для представления информации о Telegram-канале.
+        Создает новую запись о канале в базе данных.
 
-        Attributes:
-            id (int): Уникальный идентификатор канала.
-            title (str): Название канала.
-            username (str): Имя пользователя канала.
-            description (Optional[str], optional): Описание канала (может быть None).
-            member_count (int): Количество участников канала.
-            link (HttpUrl): Ссылка на канал в формате HTTP URL.
-            messages (Optional[List[LatestMessagePydantic]], optional): Список последних сообщений (может быть None).
+        Args:
+            channel_info (ChannelInfoPydantic): Информация о канале для сохранения.
+            messages_info (List[Dict[Any, Any]]): Информация о последних сообщениях канала.
+            db (AsyncSession): Асинхронная сессия базы данных.
 
+        Returns:
+            ChannelInfo: Запись о созданном канале в базе данных.
         """
+        channel_full = {
+            'id': channel_info.id,
+            'username': channel_info.username,
+            'title': channel_info.title,
+            'description': channel_info.description,
+            'member_count': channel_info.member_count,
+            'link': str(channel_info.link),
+            'messages': messages_info
+        }
 
-        id: int
-        title: str
-        username: str
-        description: Optional[str] = None
-        member_count: int
-        link: HttpUrl
-        messages: Optional[List[LatestMessagePydantic]]
+        db_channel_info = models.ChannelInfo(**channel_full)
+        db.add(db_channel_info)
+        await db.commit()
+        await db.refresh(db_channel_info)
 
-Класс ChannelInfoPydantic
+        return db_channel_info
+
+Функция `crud_post_channel` создает новую запись о канале в базе данных.
+
+Аргументы:
+- `channel_info` (ChannelInfoPydantic): Информация о канале для сохранения.
+- `messages_info` (List[Dict[Any, Any]]): Информация о последних сообщениях канала.
+- `db` (AsyncSession): Асинхронная сессия базы данных.
+
+Возвращает:
+- `ChannelInfo`: Запись о созданном канале в базе данных.
+
+
+Функция crud_get_channel
 ------------
 
 .. code-block:: python
 
-    class ChannelInfoPydantic(BaseModel):
+    async def crud_get_channel(channel_username: str, db: AsyncSession) -> Union[models.ChannelInfo, None]:
         """
-        Модель данных Pydantic для представления информации о Telegram-канале без списка сообщений.
+        Извлекает информацию о канале из базы данных по его имени пользователя (username).
 
-        Attributes:
-            id (int): Уникальный идентификатор канала.
-            title (str): Название канала.
-            username (str): Имя пользователя канала.
-            description (Optional[str], optional): Описание канала (может быть None).
-            member_count (int): Количество участников канала.
-            link (HttpUrl): Ссылка на канал в формате HTTP URL.
+        Args:
+            channel_username (str): Имя пользователя (username) канала.
+            db (AsyncSession): Асинхронная сессия базы данных.
 
+        Returns:
+            Union[models.ChannelInfo, None]: Информация о канале или None, если канал не найден.
         """
+        query = (
+            select(models.ChannelInfo)
+            .where(models.ChannelInfo.username == channel_username)
+        )
+        response = await db.scalars(query)
+        return response.first()
 
-        id: int
-        title: str
-        username: str
-        description: Optional[str] = None
-        member_count: int
-        link: HttpUrl
 
-Класс LatestMessagePydantic
-------------
+Функция `crud_get_channel` извлекает информацию о канале из базы данных по его имени пользователя (username).
 
-.. code-block:: python
+Аргументы:
+- `channel_username` (str): Имя пользователя (username) канала.
+- `db` (AsyncSession): Асинхронная сессия базы данных.
 
-    class LatestMessagePydantic(BaseModel):
-        """
-        Модель данных Pydantic для представления информации о последнем сообщении в Telegram-канале.
-
-        Attributes:
-            id (int): Уникальный идентификатор сообщения.
-            channel_id (int): Уникальный идентификатор канала, к которому относится сообщение.
-            views (int): Количество просмотров сообщения.
-            date (str): Дата и время отправки сообщения.
-            forwards (int): Количество пересылок сообщения.
-            url (str): URL-ссылка на сообщение.
-            reactions (Optional[List[ReactionPydantic]], optional): Список реакций на сообщение (может быть None).
-            message_text (str): Текст сообщения.
-
-        """
-        id: int
-        channel_id: int
-        views: int
-        date: str
-        forwards: int
-        url: str
-        reactions: Optional[List[ReactionPydantic]]
-        message_text: str
-
-Класс ReactionPydantic
-------------
-
-.. code-block:: python
-
-    class ReactionPydantic(BaseModel):
-        """
-        Модель данных Pydantic для представления реакции на сообщение в Telegram-канале.
-
-        Attributes:
-            emoticon (str): Эмотикон, представляющий реакцию.
-            count (int): Количество этой реакции на сообщение.
-
-        """
-        emoticon: str
-        count: int
+Возвращает:
+- `Union[models.ChannelInfo, None]`: Информация о канале или None, если канал не найден.
