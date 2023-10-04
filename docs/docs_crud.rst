@@ -1,16 +1,14 @@
 .. highlight:: python
 
 =====================
-Документация `services/db/crud/channel.py`_
+Документация services/db/crud/channel.py
 =====================
-
-.. _`api/schemas`: https://github.com/ILarious/test_tg_channel_parser/blob/main/services/db/crud/channel.py
-
 
 Этот документ содержит обзор и документацию к API, созданному с использованием FastAPI.
 
-Модуль `crud` содержит функции для взаимодействия с базой данных, включая создание новых записей о каналах и извлечение информации о каналах.
+`Модуль`_ содержит функции для взаимодействия с базой данных, включая создание новых записей о каналах и извлечение информации о каналах.
 
+.. _`Модуль`: https://github.com/ILarious/test_tg_channel_parser/blob/main/services/db/crud/channel.py
 
 Функция crud_post_channel
 ------------
