@@ -83,10 +83,8 @@ project/
 Как получить StringSession:
    https://docs.telethon.dev/en/stable/concepts/sessions.html#string-sessions
      
-   
 
-
-4. **Создание Docker контейнеров с FastAPI и PostgreSQL**
+3. **Создание Docker контейнеров с FastAPI и PostgreSQL**
 
 - Убедитесь, что Docker установлен и запущен на вашей машине.
 
