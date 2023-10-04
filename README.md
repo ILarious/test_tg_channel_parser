@@ -17,9 +17,52 @@ https://github.com/ILarious/test_tg_channel_parser/tree/main/docs
 ---
 
 ## Структура проекта
-
-тут будет структура
-
+```
+project/
+    ├── api/
+    │   ├── routers/
+    │   │   └── channel.py
+    │   └── schemas/
+    │       ├── channel.py
+    │       ├── message.py
+    │       └── reactions.py
+    │
+    ├── services/
+    │   ├── db/
+    │   │   ├── crud/
+    │   │   │   └── channel.py
+    │   │   ├── migrations/
+    │   │   │   ├── versions/
+    │   │   │   ├── env.py
+    │   │   │   └── ...
+    │   │   ├── config.py
+    │   │   ├── core.py
+    │   │   ├── mmodels.py
+    │   │   └── alembic.ini 
+    │   └── tg/
+    │       ├── config.py
+    │       ├── core.py
+    │       └── utils.py 
+    │
+    ├── tests/
+    │   ├── integration_tests/
+    │   │   ├── conftest.py
+    │   │   ├── test_crud.py
+    │   │   └── test_tg_core.py 
+    │   ├── unit_tests/
+    │   │   └── test_routers.py
+    │   └── conftest.py
+    │
+    ├── .env
+    ├── .env.example
+    ├── .gitignore
+    ├── docker-compose.yml
+    ├── README.md
+    ├── main.py
+    ├── Dockerfile
+    ├── pyproject.toml
+    └── requirements.txt
+```
 ---
 
 ## Установка
