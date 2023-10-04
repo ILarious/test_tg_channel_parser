@@ -11,7 +11,7 @@
 
 ## Документация
 
-тут будет ссылка
+https://github.com/ILarious/test_tg_channel_parser/tree/main/docs
 
 ---
 
