@@ -4,9 +4,9 @@
 Документация services/db/config.py
 ============================
 
-Этот документ содержит обзор и документацию к `модуль`_, который предоставляет функциональность для управления настройками приложения с использованием Pydantic.
+Этот документ содержит обзор и документацию к `модулю`_, который предоставляет функциональность для управления настройками приложения с использованием Pydantic.
 
-.. _`Модуль`: https://github.com/ILarious/test_tg_channel_parser/blob/main/services/db/config.py
+.. _`Модулю`: https://github.com/ILarious/test_tg_channel_parser/blob/main/services/db/config.py
 
 Класс DatabaseSettings
 ----------------------

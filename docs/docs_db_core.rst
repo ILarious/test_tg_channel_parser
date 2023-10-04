@@ -4,9 +4,9 @@
 Документация services/db/core.py
 =========================
 
-Этот документ содержит обзор и документацию к `модуль`_, который предоставляет базовые функции для работы с базой данных SQLAlchemy.
+Этот документ содержит обзор и документацию к `модулю`_, который предоставляет базовые функции для работы с базой данных SQLAlchemy.
 
-.. _`Модуль`: https://github.com/ILarious/test_tg_channel_parser/blob/main/services/db/config.py
+.. _`Модулю`: https://github.com/ILarious/test_tg_channel_parser/blob/main/services/db/config.py
 
 Класс Base
 ----------
