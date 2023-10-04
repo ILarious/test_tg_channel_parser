@@ -1,8 +1,11 @@
 .. highlight:: python
 
 =====================
-Документация api/schemas
+Документация `services/db/crud/channel.py`_
 =====================
+
+.. _`api/schemas`: https://github.com/ILarious/test_tg_channel_parser/blob/main/services/db/crud/channel.py
+
 
 Этот документ содержит обзор и документацию к API, созданному с использованием FastAPI.
 
