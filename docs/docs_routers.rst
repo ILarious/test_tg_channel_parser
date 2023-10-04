@@ -6,6 +6,10 @@
 
 Этот документ содержит обзор и документацию к API, созданному с использованием FastAPI.
 
+`Модуль`_ содержит две функции для обработки API-запросов: post_channel, которая отправляет информацию о Telegram-канале в базу данных, и get_channel_info, которая получает информацию о канале из базы данных.
+
+.. _`Модуль`: https://github.com/ILarious/test_tg_channel_parser/blob/main/api/routers/channel.py
+
 Функция post_channel
 ------------
 
