@@ -57,6 +57,8 @@ project/
     ├── .env.example
     ├── .gitignore
     ├── docker-compose.yml
+    ├── docker-compose.test.yml
+    ├── .gitlab-ci.yml
     ├── README.md
     ├── main.py
     ├── Dockerfile
