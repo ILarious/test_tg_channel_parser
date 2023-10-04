@@ -30,10 +30,20 @@ https://github.com/ILarious/test_tg_channel_parser/tree/main/docs
    ```
 2. **Переменные окружения**
 
-    Создать файл .env.production и добавить переменные окружения согласно .env.example
+    Создать файл .env и добавить переменные окружения согласно .env.example
+
+   - как создать Telegram app и получть api_id и api_hash:
+     ```bash
+      https://core.telegram.org/api/obtaining_api_id#obtaining-api-id
+     ```
+   - как получить StringSession:
+     ```bash
+      https://docs.telethon.dev/en/stable/concepts/sessions.html#string-sessions
+     ```
+   
 
 
-3. **Создание Docker контейнеров с FastAPI и PostgreSQL**
+4. **Создание Docker контейнеров с FastAPI и PostgreSQL**
 
 - Убедитесь, что Docker установлен и запущен на вашей машине.
 
