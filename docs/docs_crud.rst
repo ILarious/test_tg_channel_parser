@@ -49,12 +49,12 @@
 Функция `crud_post_channel` создает новую запись о канале в базе данных.
 
 Аргументы:
-- `channel_info` (ChannelInfoPydantic): Информация о канале для сохранения.
-- `messages_info` (List[Dict[Any, Any]]): Информация о последних сообщениях канала.
-- `db` (AsyncSession): Асинхронная сессия базы данных.
+    - `channel_info` (ChannelInfoPydantic): Информация о канале для сохранения.
+    - `messages_info` (List[Dict[Any, Any]]): Информация о последних сообщениях канала.
+    - `db` (AsyncSession): Асинхронная сессия базы данных.
 
 Возвращает:
-- `ChannelInfo`: Запись о созданном канале в базе данных.
+    - `ChannelInfo`: Запись о созданном канале в базе данных.
 
 
 Функция crud_get_channel
@@ -84,8 +84,8 @@
 Функция `crud_get_channel` извлекает информацию о канале из базы данных по его имени пользователя (username).
 
 Аргументы:
-- `channel_username` (str): Имя пользователя (username) канала.
-- `db` (AsyncSession): Асинхронная сессия базы данных.
+    - `channel_username` (str): Имя пользователя (username) канала.
+    - `db` (AsyncSession): Асинхронная сессия базы данных.
 
 Возвращает:
-- `Union[models.ChannelInfo, None]`: Информация о канале или None, если канал не найден.
+    - `Union[models.ChannelInfo, None]`: Информация о канале или None, если канал не найден.
