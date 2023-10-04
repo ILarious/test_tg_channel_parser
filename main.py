@@ -7,7 +7,7 @@ from api.routers.channel import router as router_channels
 
 # Создание экземпляра FastAPI приложения
 app: FastAPI = FastAPI(
-    title="final_course_project",  # Название вашего приложения
+    title="telegram_channels_parser",  # Название приложения
 )
 
 # Включение роутеров для обработки маршрутов API

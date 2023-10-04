@@ -1,4 +1,4 @@
-from sqlalchemy import select
+from sqlalchemy import select, func
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from api.schemas.channel import ChannelInfoPydantic, ChannelInfo
@@ -52,7 +52,7 @@ async def crud_get_channel(channel_username: str, db: AsyncSession) -> Union[mod
     """
     query = (
         select(models.ChannelInfo)
-        .where(models.ChannelInfo.username == channel_username)
+        .where(func.lower(models.ChannelInfo.username) == func.lower(channel_username))
     )
     response = await db.scalars(query)
     return response.first()

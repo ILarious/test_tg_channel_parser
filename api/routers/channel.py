@@ -26,7 +26,7 @@ async def post_channel(
         db: AsyncSession = Depends(get_async_session)
 ) -> ChannelInfo:
     """
-    Отправляет информацию о канале в Telegram в базу данных.
+    Запрашивает информацию о канале Telegram и сохраняет ее в базу данных.
 
     Args:
         channel_username (str): Имя пользователя Telegram-канала.
@@ -54,7 +54,7 @@ async def post_channel(
     except (UniqueViolationError, IntegrityError):
         raise HTTPException(
             status_code=409,
-            detail='Канал уже существует'
+            detail='Channel with the provided username already exists.'
         )
 
     except (UsernameNotOccupiedError, ValueError):

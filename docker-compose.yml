@@ -40,3 +40,12 @@ services:
       - .env
     command: >
       /bin/sh -c "alembic -c /app/services/db/alembic.ini upgrade head && uvicorn main:app --host 0.0.0.0 --port 8000 --reload"
+
+  pytest:
+    build:
+      context: .
+    container_name: pytest
+    depends_on:
+      - postgres_test
+    command: >
+      /bin/sh -c "pytest -v"
