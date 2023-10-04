@@ -6,6 +6,11 @@
 
 Этот документ содержит обзор и документацию к API, созданному с использованием FastAPI.
 
+`Модуль`_ содержит четыре класса ChannelInfo, ChannelInfoPydantic, LatestMessagePydantic и ReactionPydantic, которые представляют собой модели данных для описания информации о Telegram-каналах, последних сообщениях в каналах и реакциях на сообщения.
+
+.. _`Модуль`: https://github.com/ILarious/test_tg_channel_parser/tree/main/api/schemas
+
+
 Класс ChannelInfo
 ------------
 
