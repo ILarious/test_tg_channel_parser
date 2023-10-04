@@ -32,14 +32,12 @@ https://github.com/ILarious/test_tg_channel_parser/tree/main/docs
 
     Создать файл .env и добавить переменные окружения согласно .env.example
 
-   - как создать Telegram app и получть api_id и api_hash:
-     ```bash
-      https://core.telegram.org/api/obtaining_api_id#obtaining-api-id
-     ```
-   - как получить StringSession:
-     ```bash
-      https://docs.telethon.dev/en/stable/concepts/sessions.html#string-sessions
-     ```
+   как создать Telegram app и получть api_id и api_hash:
+   https://core.telegram.org/api/obtaining_api_id#obtaining-api-id
+
+   как получить StringSession:
+   https://docs.telethon.dev/en/stable/concepts/sessions.html#string-sessions
+     
    
 
 
