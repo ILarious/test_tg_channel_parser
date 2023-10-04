@@ -6,7 +6,7 @@
 
 Этот документ содержит обзор и документацию к `модулю`_, который предоставляет функциональность для управления настройками приложения с использованием Pydantic.
 
-.. _`Модулю`: https://github.com/ILarious/test_tg_channel_parser/blob/main/services/db/config.py
+.. _`модулю`: https://github.com/ILarious/test_tg_channel_parser/blob/main/services/db/config.py
 
 Класс DatabaseSettings
 ----------------------
