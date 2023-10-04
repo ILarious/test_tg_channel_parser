@@ -6,7 +6,7 @@
 
 Этот документ содержит обзор и документацию к `модулю`_, который предоставляет базовые функции для работы с базой данных SQLAlchemy.
 
-.. _`Модулю`: https://github.com/ILarious/test_tg_channel_parser/blob/main/services/db/config.py
+.. _`Модулю`: https://github.com/ILarious/test_tg_channel_parser/blob/main/services/db/core.py
 
 Класс Base
 ----------
