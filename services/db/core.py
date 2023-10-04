@@ -1,7 +1,8 @@
 from typing import Annotated, AsyncGenerator, Dict
 
 from sqlalchemy import String
-from sqlalchemy.ext.asyncio import create_async_engine, AsyncEngine, async_sessionmaker, AsyncSession
+from sqlalchemy.ext.asyncio import (AsyncEngine, AsyncSession,
+                                    async_sessionmaker, create_async_engine)
 from sqlalchemy.orm import DeclarativeBase
 
 from services.db.config import db_settings

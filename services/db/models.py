@@ -1,6 +1,6 @@
-from sqlalchemy import Column, Integer, String, Text, MetaData
 from typing import Optional
 
+from sqlalchemy import Column, Integer, MetaData, String, Text
 from sqlalchemy.dialects.postgresql import JSONB
 
 from services.db.core import Base

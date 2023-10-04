@@ -1,7 +1,8 @@
+from typing import List, Optional
+
 from api.schemas.channel import ChannelInfoPydantic
 from api.schemas.message import LatestMessagePydantic
 from services.tg.core import TelegramAPI
-from typing import List, Optional
 
 
 async def get_tg_channel_info(channel_username: str) -> Optional[ChannelInfoPydantic]:

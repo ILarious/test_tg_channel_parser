@@ -1,5 +1,6 @@
-import uvicorn
 import asyncio
+
+import uvicorn
 from fastapi import FastAPI
 
 # Импорт роутеров, определенных в других файлах

@@ -1,10 +1,9 @@
-from typing import List, Dict, Any
+from typing import Any, Dict, List
 
 from api.schemas.channel import ChannelInfoPydantic
 from api.schemas.message import LatestMessagePydantic
 from api.schemas.reactions import ReactionPydantic
-
-from services.db.crud.channel import crud_post_channel, crud_get_channel
+from services.db.crud.channel import crud_get_channel, crud_post_channel
 from tests.conftest import async_session_maker, client
 
 

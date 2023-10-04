@@ -1,9 +1,10 @@
-from sqlalchemy import select, func
+from typing import Any, Dict, List, Union
+
+from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from api.schemas.channel import ChannelInfoPydantic, ChannelInfo
+from api.schemas.channel import ChannelInfo, ChannelInfoPydantic
 from services.db import models
-from typing import List, Union, Dict, Any
 
 
 async def crud_post_channel(

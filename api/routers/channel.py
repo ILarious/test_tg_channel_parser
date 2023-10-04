@@ -1,4 +1,4 @@
-from typing import List, Dict, Any
+from typing import Any, Dict, List
 
 from asyncpg.exceptions import UniqueViolationError
 from fastapi import APIRouter, Depends, HTTPException
@@ -6,10 +6,10 @@ from sqlalchemy.exc import IntegrityError
 from sqlalchemy.ext.asyncio import AsyncSession
 from telethon.errors import UsernameNotOccupiedError
 
-from api.schemas.message import LatestMessagePydantic
-from services.db.crud.channel import crud_post_channel, crud_get_channel
-from services.db.core import get_async_session
 from api.schemas.channel import ChannelInfo, ChannelInfoPydantic
+from api.schemas.message import LatestMessagePydantic
+from services.db.core import get_async_session
+from services.db.crud.channel import crud_get_channel, crud_post_channel
 from services.tg.utils import get_tg_channel_info, get_tg_latest_messages
 
 router: APIRouter = APIRouter(
@@ -41,13 +41,18 @@ async def post_channel(
     """
     try:
         # Получение информации о канале из Telegram и последних сообщений.
-        channel_info: ChannelInfoPydantic = await get_tg_channel_info(channel_username)
-        latest_messages: List[LatestMessagePydantic] = await get_tg_latest_messages(channel_username,
-                                                                                    limit_latest_messages)
-        messages_info: List[Dict[Any, Any]] = [message.dict() for message in latest_messages]
+        channel_info: ChannelInfoPydantic = await get_tg_channel_info(
+            channel_username)
+        latest_messages: List[
+            LatestMessagePydantic] = await get_tg_latest_messages(
+            channel_username,
+            limit_latest_messages)
+        messages_info: List[Dict[Any, Any]] = [message.dict() for message in
+                                               latest_messages]
 
         # Отправка информации о канале в базу данных.
-        response: ChannelInfo = await crud_post_channel(channel_info, messages_info, db)
+        response: ChannelInfo = await crud_post_channel(channel_info,
+                                                        messages_info, db)
 
         return response
 

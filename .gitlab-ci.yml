@@ -6,6 +6,7 @@ linting:
   stage: linting
   image: registry.gitlab.com/it-telegram/telegram_channels_parser:latest
   script:
+    - isort . --check-only
     - flake8 .
 
 test:
@@ -14,7 +15,19 @@ test:
   services:
     - docker:20.10.16-dind
   before_script:
-    - echo ""
+    - export DB_HOST=$DB_HOST
+    - export DB_PORT=$DB_PORT
+    - export DB_NAME=$DB_NAME
+    - export DB_USER=$DB_USER
+    - export DB_PASS=$DB_PASS
+    - export DB_HOST_TEST=$DB_HOST_TEST
+    - export DB_PORT_TEST=$DB_PORT_TEST
+    - export DB_NAME_TEST=$DB_NAME_TEST
+    - export DB_USER_TEST=$DB_USER_TEST
+    - export DB_PASS_TEST=$DB_PASS_TEST
+    - export TG_API_ID=$TG_API_ID
+    - export TG_API_HASH=$TG_API_HASH
+    - export TG_STRING_SESSION=$TG_STRING_SESSION
   script:
     - docker-compose -f docker-compose.test.yml up --exit-code-from fastapi
   after_script:

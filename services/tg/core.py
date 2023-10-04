@@ -1,12 +1,13 @@
+from typing import List, Optional
+
 from telethon import functions
-from telethon.sync import TelegramClient
 from telethon.sessions import StringSession
+from telethon.sync import TelegramClient
 
 from api.schemas.channel import ChannelInfoPydantic
 from api.schemas.message import LatestMessagePydantic
 from api.schemas.reactions import ReactionPydantic
 from services.tg.config import tg_settings
-from typing import List, Optional
 
 
 class TelegramAPI:
